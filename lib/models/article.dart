@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:timeago/timeago.dart' as timeago;
 
 class Article {
@@ -5,7 +7,7 @@ class Article {
   final String title;
   final String description;
   final String url;
-  final String? urlToImage;
+  final  urlToImage;
   final DateTime publishedAt;
   final String source;
   
@@ -15,7 +17,7 @@ class Article {
     required this.title,
     required this.description,
     required this.url,
-     required this.urlToImage,
+    required this.urlToImage,
     required this.publishedAt,
     required this.source,
     
