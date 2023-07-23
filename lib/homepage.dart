@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:newsorg/models/articles.dart';
-import 'package:http/http.dart' as http;
+import 'api/api.dart';
+import 'models/article.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,63 +10,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<Post> fetchPost() async {
-    final response = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-    // String url =
-    //     "https://newsapi.org/v2/everything?q=tesla&from=2023-06-11&sortBy=publishedAt&apiKey=03490090943c44e59329919ed2d20485";
-    // Uri uri = Uri.parse(url);
-
-    // http.Response response = await http.get(uri);
-
-    if (response.statusCode == 200) {
-      return Post.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to load post');
-    }
-  }
-
-  late Future<Post> article;
+  late Future<List<Article>> getArticles;
 
   @override
   void initState() {
     super.initState();
-    article = fetchPost();
+    getArticles = Api().getArticles();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: RichText(
-              text: const TextSpan(children: [
-            TextSpan(
-                text: 'Flutter',
-                style: TextStyle(fontSize: 20, color: Colors.black)),
-            TextSpan(
-                text: 'News',
-                style: TextStyle(fontSize: 20, color: Colors.blue))
-          ])),
-          centerTitle: true,
-        ),
-        body: FutureBuilder<Post>(
-          future: article,
+      appBar: AppBar(
+        title: RichText(
+            text: const TextSpan(children: [
+          TextSpan(
+              text: 'Flutter',
+              style: TextStyle(fontSize: 20, color: Colors.black)),
+          TextSpan(
+              text: 'News', style: TextStyle(fontSize: 20, color: Colors.blue))
+        ])),
+        centerTitle: true,
+      ),
+      body: FutureBuilder(
+          future: getArticles,
           builder: (context, snapshot) {
-            // if (snapshot.connectionState == ConnectionState.done) {
-            //   return ListView.builder(itemBuilder: (context, index) {
-            //     return ListTile(
-            //       title: Text(snapshot.data!.content),
-            //     );
-            //   });
-            // }
-            if (snapshot.hasData) {
-              return Text(snapshot.data!.body);
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else if (snapshot.hasData) {
+              final data = snapshot.data;
+              return ListView.builder(
+                itemCount: 92,
+                itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(data![index].title),
+                    subtitle: Text(data[index].description),
+                  ),
+                );
+              });
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
-
-            return const CircularProgressIndicator();
-          },
-        ));
+          }),
+    );
   }
 }
