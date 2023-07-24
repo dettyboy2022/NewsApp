@@ -15,8 +15,33 @@ class _FullDetailsState extends State<FullDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [Image.network(widget.news.urlToImage)],
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(widget.news.author),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              widget.news.title,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Image.network(widget.news.urlToImage),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(widget.news.description)
+          ],
+        ),
       ),
     );
   }
