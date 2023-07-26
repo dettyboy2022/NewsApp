@@ -7,6 +7,7 @@ class Api {
   static const apiKey = '03490090943c44e59329919ed2d20485';
   static const baseURL =
       'https://newsapi.org/v2/everything?q=apple&apiKey=$apiKey';
+      // 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=$apiKey';
 
   Future<List<Article>> getArticles() async {
     final response = await http.get(Uri.parse(baseURL));
@@ -20,4 +21,3 @@ class Api {
     }
   }
 }
-

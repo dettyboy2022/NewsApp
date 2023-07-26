@@ -23,214 +23,238 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          FutureBuilder(
-              future: getArticles,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(snapshot.error.toString()),
-                  );
-                } else if (snapshot.hasData) {
-                  final data = snapshot.data;
-                  return Center(
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: double.infinity,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 60, 10, 20),
-                                decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                  colors: [Colors.black, Colors.grey],
-                                  begin: Alignment(0, 1),
-                                  end: Alignment(0, 0),
-                                )),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: FutureBuilder(
+          future: getArticles,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else if (snapshot.hasData) {
+              final data = snapshot.data;
+              return Center(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: Container(
+                            padding: const EdgeInsets.fromLTRB(10, 60, 10, 20),
+                            decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                              colors: [Colors.black, Colors.grey],
+                              begin: Alignment(0, 1),
+                              end: Alignment(0, 0),
+                            )),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Row(
-                                          children: [
-                                            Icon(Iconsax.receipt_add),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(
-                                              'News24',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  fontSize: 20),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: Colors.grey.shade400,
-                                            ),
-                                            padding: const EdgeInsets.all(8),
-                                            child: const Icon(
-                                                Iconsax.notification))
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
                                     const Row(
                                       children: [
-                                        Text(
-                                          'Good Morning DettyBoy',
-                                          style: TextStyle(fontSize: 15),
-                                        ),
+                                        Icon(Iconsax.receipt_add),
                                         SizedBox(
                                           width: 10,
                                         ),
-                                        Icon(Icons.waves)
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const Text(
-                                      'Discover Breaking News',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 9,
-                                          child: SearchBar(
-                                            backgroundColor:
-                                                MaterialStatePropertyAll(
-                                                    Colors.grey.shade700),
-                                            leading: const Icon(
-                                                Iconsax.search_favorite4),
-                                            hintText: 'Find Breaking News',
-                                            hintStyle:
-                                                const MaterialStatePropertyAll(
-                                                    TextStyle(
-                                                        color: Colors.white)),
-                                            shape: MaterialStatePropertyAll(
-                                                RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10))),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                                width: 30,
-                                                height: 55,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey.shade700,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                                child:
-                                                    const Icon(Iconsax.radar)))
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Breaking News',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors.white),
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Icon(Icons.fire_extinguisher)
-                                          ],
-                                        ),
                                         Text(
-                                          'View All',
+                                          'News24',
                                           style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.white),
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 20),
                                         )
                                       ],
-                                    )
+                                    ),
+                                    Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.grey.shade400,
+                                        ),
+                                        padding: const EdgeInsets.all(8),
+                                        child: const Icon(Iconsax.notification))
                                   ],
                                 ),
-                              )),
-                          Expanded(
-                            flex: 1,
-                            child: ListView.builder(
-                                padding: const EdgeInsets.only(top: 100),
-                                itemCount: 92,
-                                itemBuilder: (context, index) {
-                                  final news = data![index];
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  FullDetails(news: news)));
-                                    },
-                                    child: Card(
-                                      margin: const EdgeInsets.all(10),
-                                      color: Colors.grey.shade400,
-                                      child: ListTile(
-                                        contentPadding:
-                                            const EdgeInsets.all(10),
-                                        leading: Image.network(
-                                            data[index].urlToImage),
-                                        title: Text(data[index].title),
-                                        subtitle: Text(data[index].source),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              }),
-          Positioned(
-            bottom: 400,
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              color: Colors.red,
-              width: 300,
-              height: 150,
-            ),
-          ),
-        ],
-      ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                const Text(
+                                  'Discover Breaking News',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const TextField(
+                                  decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(),
+                                      hintText: 'Find Breaking News',
+                                      hintStyle: TextStyle(color: Colors.white),
+                                      prefixIcon: Icon(
+                                        Icons.search,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                SizedBox(
+                                  height: 195,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemCount: 4,
+                                      itemBuilder: (context, index) {
+                                        return Stack(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.white,
+                                              ),
+                                              margin: const EdgeInsets.only(
+                                                  right: 10),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: Image.network(
+                                                  data![index].urlToImage,
+                                                  width: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            // Positioned(
+                                            //     bottom: 0,
+                                            //     left: 0,
+                                            //     right: 0,
+                                            //     child: Container(
+                                            //       margin: const EdgeInsets.only(
+                                            //           right: 20),
+                                            //       // height:
+                                            //       //     context.deviceHeight() /
+                                            //       //         13,
+                                            //       padding: const EdgeInsets
+                                            //               .symmetric(
+                                            //           horizontal: 20,
+                                            //           vertical: 10),
+                                            //       decoration: BoxDecoration(
+                                            //           color: Colors.black
+                                            //               .withOpacity(0.7),
+                                            //           borderRadius:
+                                            //               const BorderRadius
+                                            //                       .only(
+                                            //                   bottomLeft: Radius
+                                            //                       .circular(10),
+                                            //                   bottomRight:
+                                            //                       Radius
+                                            //                           .circular(
+                                            //                               30))),
+                                            //       child: Text(
+                                            //         data[index].title,
+                                            //         style: const TextStyle(
+                                            //             color: Colors.white,
+                                            //             fontWeight:
+                                            //                 FontWeight.w600,
+                                            //             fontSize: 17),
+                                            //       ),
+                                            //     ))
+                                            Positioned(
+                                                bottom: 0,
+                                                left: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 10),
+                                                  color: Colors.black,
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 30,
+                                                      vertical: 10),
+                                                  child: Text(data[index].title,
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                                ))
+                                          ],
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
+                          )),
+                      Expanded(
+                        flex: 1,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    left: 10, bottom: 10, top: 20),
+                                child: Text(
+                                  'Top News',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 500,
+                                child: ListView.builder(
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    // itemCount: data?.length,
+                                    itemCount: 10,
+                                    itemBuilder: (context, index) {
+                                      final news = data![index];
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      FullDetails(news: news)));
+                                        },
+                                        child: ListTile(
+                                          contentPadding:
+                                              const EdgeInsets.all(10),
+                                          leading: Image.network(
+                                              data[index].urlToImage),
+                                          title: Text(data[index].title),
+                                          subtitle: Text(news.source),
+                                        ),
+                                      );
+                                    }),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }
