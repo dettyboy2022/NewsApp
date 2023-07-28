@@ -17,42 +17,104 @@ class _FullDetailsState extends State<FullDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(widget.news.urlToImage),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(
-            widget.news.title,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(widget.news.source),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Posted by: ${widget.news.author}'),
-              Text('Published: ${widget.news.publishedAt.day} days ago')
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(widget.news.description),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(widget.news.content),
-          TextButton(
-              onPressed: () {
-                _launchURL(widget.news.url);
-              },
-              child: const Text('Read More'))
-        ],
+      // body: SafeArea(
+      //   child: CustomScrollView(
+      //     slivers: [
+      //       SliverAppBar(
+      //         automaticallyImplyLeading: true,
+      //         iconTheme: const IconThemeData(color: Colors.white),
+      //         expandedHeight: 400,
+      //         flexibleSpace: FlexibleSpaceBar(
+      //             background: Image.network(
+      //           widget.news.urlToImage,
+      //           fit: BoxFit.cover,
+      //         )),
+      //       ),
+      //       SliverList(delegate: SliverChildBuilderDelegate(
+      //         (context, index) {
+      //           return ListView.builder(
+      //             shrinkWrap: true,
+      //             itemBuilder: (context, index) {
+      //               return Column(
+      //                 children: [Text(widget.news.title)],
+      //               );
+      //             },
+      //           );
+      //         },
+      //       ))
+      //     ],
+      //   ),
+      // ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(widget.news.urlToImage)),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              widget.news.title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(widget.news.source),
+            const Divider(
+              color: Colors.grey,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Author:'),
+                    Text(
+                      widget.news.author,
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  const Text('Published:'),
+                  Text(
+                    '${widget.news.publishedAt.day} days ago',
+                    style: const TextStyle(
+                        fontSize: 17, fontWeight: FontWeight.w500),
+                  )
+                ]),
+              ],
+            ),
+            const Divider(
+              color: Colors.grey,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              widget.news.description,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              widget.news.content,
+              style: const TextStyle(fontSize: 16),
+            ),
+            TextButton(
+                onPressed: () {
+                  _launchURL(widget.news.url);
+                },
+                child: const Text('Read More'))
+          ],
+        ),
       ),
     );
   }

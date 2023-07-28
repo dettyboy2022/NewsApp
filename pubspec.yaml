@@ -40,6 +40,7 @@ dependencies:
   timeago: ^3.5.0
   iconsax: ^0.0.8
   url_launcher: ^6.1.12
+  lottie: ^2.5.0
   
   
   

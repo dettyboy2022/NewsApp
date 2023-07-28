@@ -140,13 +140,17 @@ class _HomePageState extends State<HomePage> {
                                               left: 20,
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                    color: Colors.red,
+                                                    color: Colors.blue,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
                                                 padding:
-                                                    const EdgeInsets.all(4),
-                                                child: Text(data[index].source),
+                                                    const EdgeInsets.all(6),
+                                                child: Text(
+                                                  data[index].source,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
                                               ),
                                             ),
                                             Positioned(
@@ -225,7 +229,6 @@ class _HomePageState extends State<HomePage> {
                                           leading: Image.network(
                                               data[index].urlToImage),
                                           title: Text(data[index].title),
-                                          subtitle: Text(news.source),
                                         ),
                                       );
                                     }),
