@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                  0.9,
+                                                  0.8,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
@@ -135,52 +135,41 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                             ),
-                                            // Positioned(
-                                            //     bottom: 0,
-                                            //     left: 0,
-                                            //     right: 0,
-                                            //     child: Container(
-                                            //       margin: const EdgeInsets.only(
-                                            //           right: 20),
-                                            //       // height:
-                                            //       //     context.deviceHeight() /
-                                            //       //         13,
-                                            //       padding: const EdgeInsets
-                                            //               .symmetric(
-                                            //           horizontal: 20,
-                                            //           vertical: 10),
-                                            //       decoration: BoxDecoration(
-                                            //           color: Colors.black
-                                            //               .withOpacity(0.7),
-                                            //           borderRadius:
-                                            //               const BorderRadius
-                                            //                       .only(
-                                            //                   bottomLeft: Radius
-                                            //                       .circular(10),
-                                            //                   bottomRight:
-                                            //                       Radius
-                                            //                           .circular(
-                                            //                               30))),
-                                            //       child: Text(
-                                            //         data[index].title,
-                                            //         style: const TextStyle(
-                                            //             color: Colors.white,
-                                            //             fontWeight:
-                                            //                 FontWeight.w600,
-                                            //             fontSize: 17),
-                                            //       ),
-                                            //     ))
+                                            Positioned(
+                                              top: 20,
+                                              left: 20,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                padding:
+                                                    const EdgeInsets.all(4),
+                                                child: Text(data[index].source),
+                                              ),
+                                            ),
                                             Positioned(
                                                 bottom: 0,
                                                 left: 0,
                                                 right: 0,
                                                 child: Container(
+                                                  decoration: const BoxDecoration(
+                                                      color: Colors.black,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          10),
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      10))),
                                                   margin: const EdgeInsets.only(
                                                       right: 10),
-                                                  color: Colors.black,
                                                   padding: const EdgeInsets
                                                           .symmetric(
-                                                      horizontal: 30,
+                                                      horizontal: 10,
                                                       vertical: 10),
                                                   child: Text(data[index].title,
                                                       style: const TextStyle(

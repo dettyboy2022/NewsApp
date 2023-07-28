@@ -12,6 +12,7 @@ class FullDetails extends StatefulWidget {
 }
 
 class _FullDetailsState extends State<FullDetails> {
+  // final Uri _url = Uri.parse('https://flutter.dev');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,12 +59,18 @@ class _FullDetailsState extends State<FullDetails> {
 
 // url launcher
 
+  // Future<void> _launchUrl() async {
+  //   if (!await launchUrl(_url)) {
+  //     throw Exception('Could not launch $_url');
+  //   }
+  // }
+
   void _launchURL(String? url) async {
     if (url != null) {
       final uri = Uri.parse(url);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
-      } else {}
+      }
     }
   }
 }
